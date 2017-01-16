@@ -49,19 +49,6 @@
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var index_1 = __webpack_require__(2);
-	var element = document.getElementById('icon');
-	var injector = new index_1.SVGInjector({
-	    cssFilePath: "/assets/css/svgs.css"
-	});
-	injector.inject(element);
-
-
-/***/ },
-/* 2 */
 /***/ function(module, exports) {
 
 	"use strict";
