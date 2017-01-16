@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "listFiles": false,
+    "outDir": "build"
+  },
+  "filesGlob": [
+    "**/*.ts",
+    "**/*.tsx",
+    "!node_modules/**"
+  ],
+  "files": [
+    "typings/tsd.d.ts",
+    "source/lib/index.ts",
+	  "source/lib/interfaces/injector-options.ts",
+	  "source/lib/interfaces/svg-injector-options.ts"
+  ]
+}
