@@ -6,6 +6,11 @@ Inject SVG as a child of the provided element.
 
 SVG Injector will take `.icon-umbrella` background image and inject it into the dom under `#MyIcon`.
 
+
+### Install
+Project is still in development. Not yet on NPM.
+`npm install lukejamesk/svg-injector`
+
 ### Html
 ```
 <span class="icon icon-umbrella" id="MyIcon"></span>
