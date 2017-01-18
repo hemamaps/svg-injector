@@ -23,7 +23,6 @@ export class SVGInjector {
     public inject(el:Element, options?:InjectorOptions) {
     	let svgElement:Element = this._getSVG(el);
     	el = this._markLoaded(el);
-    	debugger;
 		el.appendChild(svgElement);
     }
 

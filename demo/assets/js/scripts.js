@@ -82,7 +82,6 @@
 	    SVGInjector.prototype.inject = function (el, options) {
 	        var svgElement = this._getSVG(el);
 	        el = this._markLoaded(el);
-	        debugger;
 	        el.appendChild(svgElement);
 	    };
 	    SVGInjector.prototype._markLoaded = function (el) {

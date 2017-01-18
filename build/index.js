@@ -15,7 +15,12 @@ var SVGInjector = (function () {
     }
     SVGInjector.prototype.inject = function (el, options) {
         var svgElement = this._getSVG(el);
+        el = this._markLoaded(el);
         el.appendChild(svgElement);
+    };
+    SVGInjector.prototype._markLoaded = function (el) {
+        el.classList.add('icon--loaded');
+        return el;
     };
     SVGInjector.prototype._getSVG = function (el) {
         var backgroundImageDataUri = this._getBackgroundImage(el);
@@ -34,8 +39,7 @@ var SVGInjector = (function () {
         var bgImageStyle;
         for (var i = 0; i < rules.length; i++) {
             var rule = rules[i];
-            var selectorText = rules[i].selectorText;
-            if (classSelector.contains(selectorText.slice(1))) {
+            if (el.matches(rules[i].selectorText)) {
                 bgImageStyle = rule.style.backgroundImage;
                 break;
             }
