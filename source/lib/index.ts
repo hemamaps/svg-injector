@@ -22,8 +22,15 @@ export class SVGInjector {
 
     public inject(el:Element, options?:InjectorOptions) {
     	let svgElement:Element = this._getSVG(el);
+    	el = this._markLoaded(el);
+    	debugger;
 		el.appendChild(svgElement);
     }
+
+    private _markLoaded(el:Element):Element {
+		el.classList.add('icon--loaded');
+		return el;
+	}
 
     private _getSVG(el:Element):Element {
     	let backgroundImageDataUri:string = this._getBackgroundImage(el);
@@ -44,8 +51,7 @@ export class SVGInjector {
 
 		for (let i = 0; i < rules.length; i++) {
 			let rule = rules[i];
-			let selectorText = rules[i].selectorText;
-			if (classSelector.contains(selectorText.slice(1))) {
+			if (el.matches(rules[i].selectorText)) {
 				bgImageStyle = rule.style.backgroundImage;
 				break;
 			}

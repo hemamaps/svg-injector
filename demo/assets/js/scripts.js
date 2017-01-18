@@ -49,6 +49,19 @@
 
 /***/ },
 /* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var index_1 = __webpack_require__(2);
+	var element = document.getElementById('icon');
+	var injector = new index_1.SVGInjector({
+	    cssFilePath: "/assets/css/svgs.css"
+	});
+	injector.inject(element);
+
+
+/***/ },
+/* 2 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -68,7 +81,13 @@
 	    }
 	    SVGInjector.prototype.inject = function (el, options) {
 	        var svgElement = this._getSVG(el);
+	        el = this._markLoaded(el);
+	        debugger;
 	        el.appendChild(svgElement);
+	    };
+	    SVGInjector.prototype._markLoaded = function (el) {
+	        el.classList.add('icon--loaded');
+	        return el;
 	    };
 	    SVGInjector.prototype._getSVG = function (el) {
 	        var backgroundImageDataUri = this._getBackgroundImage(el);
@@ -87,8 +106,7 @@
 	        var bgImageStyle;
 	        for (var i = 0; i < rules.length; i++) {
 	            var rule = rules[i];
-	            var selectorText = rules[i].selectorText;
-	            if (classSelector.contains(selectorText.slice(1))) {
+	            if (el.matches(rules[i].selectorText)) {
 	                bgImageStyle = rule.style.backgroundImage;
 	                break;
 	            }

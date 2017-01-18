@@ -33,7 +33,16 @@ describe("SVG Injector", function() {
     	svgInjector.inject(el);
 
     	expect(el.children[0].nodeName.toLowerCase()).to.equal('svg');
-	})
+	});
+
+    it("has class 'icon--loaded' once svg has been inserted", () => {
+		let el:Element = fixture.el.children[1];
+		svgInjector.inject(el);
+
+		let classes = el.classList;
+
+		expect(classes.contains('icon--loaded')).to.equal(true);
+	});
 
     it('fixture works', () => {
     	let el:Element = fixture.el.children[1];
