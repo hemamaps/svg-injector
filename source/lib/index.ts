@@ -44,10 +44,10 @@ export class SVGInjector {
 	}
 
     private _getBackgroundImage(el:Element):string {
-		let rules = this._styleSheet.rules;
+		let rules = this._styleSheet.cssRules;
 		let classSelector = el.classList;
 		let bgImageStyle;
-
+		
 		for (let i = 0; i < rules.length; i++) {
 			let rule = rules[i];
 			if (el.matches(rules[i].selectorText)) {

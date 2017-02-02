@@ -34,7 +34,7 @@ var SVGInjector = (function () {
         return placeholder.children[0];
     };
     SVGInjector.prototype._getBackgroundImage = function (el) {
-        var rules = this._styleSheet.rules;
+        var rules = this._styleSheet.cssRules;
         var classSelector = el.classList;
         var bgImageStyle;
         for (var i = 0; i < rules.length; i++) {
