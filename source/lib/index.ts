@@ -47,10 +47,11 @@ export class SVGInjector {
 		let rules = this._styleSheet.cssRules;
 		let classSelector = el.classList;
 		let bgImageStyle;
-		
+
 		for (let i = 0; i < rules.length; i++) {
 			let rule = rules[i];
-			if (el.matches(rules[i].selectorText)) {
+			let selectorText = rules[i].selectorText;
+			if (classSelector.contains(selectorText.slice(1))) {
 				bgImageStyle = rule.style.backgroundImage;
 				break;
 			}
