@@ -105,7 +105,8 @@
 	        var bgImageStyle;
 	        for (var i = 0; i < rules.length; i++) {
 	            var rule = rules[i];
-	            if (el.matches(rules[i].selectorText)) {
+	            var selectorText = rules[i].selectorText;
+	            if (classSelector.contains(selectorText.slice(1))) {
 	                bgImageStyle = rule.style.backgroundImage;
 	                break;
 	            }
