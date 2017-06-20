@@ -49,4 +49,10 @@ describe("SVG Injector", function() {
     	expect(el.id).to.equal('icon');
 	});
 
+    it('can get svg element', () => {
+    	let svg = svgInjector.getInjectHtml("icon-umbrella");
+		expect(svg).to.not.equal(undefined);
+		expect(svg.nodeName).to.equal("svg");
+	})
+
 });
