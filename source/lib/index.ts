@@ -21,18 +21,23 @@ export class SVGInjector {
     }
 
     public inject(el:Element, options?:InjectorOptions) {
-    	let svgElement:Element = this._getSVG(el);
+    	let svgElement:Element = this._getSVG(el.className);
     	el = this._markLoaded(el);
 		el.appendChild(svgElement);
     }
+
+    public getInjectHtml(classSelector:string, options?:InjectorOptions) {
+    	let svgElement:Element = this._getSVG(classSelector);
+    	return svgElement;
+	}
 
     private _markLoaded(el:Element):Element {
 		el.classList.add('icon--loaded');
 		return el;
 	}
 
-    private _getSVG(el:Element):Element {
-    	let backgroundImageDataUri:string = this._getBackgroundImage(el);
+    private _getSVG(classSelector:string):Element {
+    	let backgroundImageDataUri:string = this._getBackgroundByClassName(classSelector);
     	return this._convertToSVG(backgroundImageDataUri);;
 	}
 
@@ -44,20 +49,23 @@ export class SVGInjector {
 	}
 
     private _getBackgroundImage(el:Element):string {
+    	return this._getBackgroundByClassName(el.className);
+	}
+
+	private _getBackgroundByClassName(classSelector:string):string {
 		let rules = this._styleSheet.cssRules;
-		let classSelector = el.classList;
 		let bgImageStyle;
 
 		for (let i = 0; i < rules.length; i++) {
 			let rule = rules[i];
 			let selectorText = rules[i].selectorText;
-			if (classSelector.contains(selectorText.slice(1))) {
+			if (classSelector.indexOf(selectorText.slice(1)) > -1) {
 				bgImageStyle = rule.style.backgroundImage;
 				break;
 			}
 		}
 
-    	if (bgImageStyle === undefined) {
+		if (bgImageStyle === undefined) {
 			throw new Error("Background SVG not defined")
 		}
 

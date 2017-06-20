@@ -80,16 +80,20 @@
 	        }
 	    }
 	    SVGInjector.prototype.inject = function (el, options) {
-	        var svgElement = this._getSVG(el);
+	        var svgElement = this._getSVG(el.className);
 	        el = this._markLoaded(el);
 	        el.appendChild(svgElement);
+	    };
+	    SVGInjector.prototype.getInjectHtml = function (classSelector, options) {
+	        var svgElement = this._getSVG(classSelector);
+	        return svgElement;
 	    };
 	    SVGInjector.prototype._markLoaded = function (el) {
 	        el.classList.add('icon--loaded');
 	        return el;
 	    };
-	    SVGInjector.prototype._getSVG = function (el) {
-	        var backgroundImageDataUri = this._getBackgroundImage(el);
+	    SVGInjector.prototype._getSVG = function (classSelector) {
+	        var backgroundImageDataUri = this._getBackgroundByClassName(classSelector);
 	        return this._convertToSVG(backgroundImageDataUri);
 	        ;
 	    };
@@ -100,13 +104,15 @@
 	        return placeholder.children[0];
 	    };
 	    SVGInjector.prototype._getBackgroundImage = function (el) {
+	        return this._getBackgroundByClassName(el.className);
+	    };
+	    SVGInjector.prototype._getBackgroundByClassName = function (classSelector) {
 	        var rules = this._styleSheet.cssRules;
-	        var classSelector = el.classList;
 	        var bgImageStyle;
 	        for (var i = 0; i < rules.length; i++) {
 	            var rule = rules[i];
 	            var selectorText = rules[i].selectorText;
-	            if (classSelector.contains(selectorText.slice(1))) {
+	            if (classSelector.indexOf(selectorText.slice(1)) > -1) {
 	                bgImageStyle = rule.style.backgroundImage;
 	                break;
 	            }
